@@ -9,62 +9,53 @@
     <title>Chris McLeod's Weather Dashboard</title>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row navbar navbar-dark bg-dark">
-            <div class="col-12 text-center">
-                <h1>Weather Dashboard</h1>
-            </div>
+    <header class="d-flex justify-content-between">
+        <div></div>
+        <h1 class="display-3 fw-bold">Weather Dashboard</h1>
+        <form action="" class="me-2">
+            <label for="city" class="form-label fw-bold">Search for a city:</label>
+            <input type="text" name="city" class="form-control city" placeholder="Type city name here...">
+            <button class="btn btn-primary mt-2 mb-2 col-lg-12" type="submit" id="searchBtn">Search</button>
+        </form>
+    </header>
+
+    <div class="col-md-12 border-top border-bottom border-4 border-dark history-container">
+        <h3>Cities:</h3>
+        <div class="container d-flex ms-2 history-div">
         </div>
     </div>
-
-    <!--this is the div for creating the button to search for a city-->
-    <div class="row">
-        <div class="col-3 bg-light pb-2 pt-3" id="searchResult">
-            <div class="row">
-                <div class="col-12">
-                    <h4>Search for a city</h4>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="input-group">
-                        <input class="form-control" type="text" id="enterCity" placeholder="View City weather">
-                        <button type="button" id="searchBtn" class="btn btn-primary"><i class="fas fa-search></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-12">
-
-                    <ul id="searchHistory" class="list-group">
-                        <!-- append li-->
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-
-        <div id="weatherContent" class="col-9 pb-4 pt-4">
-            <div class="row pb-3 mr-2 ml-2">
-                <div id="cityDetails" class="col-12 border rounded px-3 py-3">
-                </div>
-            </div>
-
-            <div class="row pb-2 pt-1">
-                <div class="col-12 ml-2">
-                    <h3>5-Day Forecast:</h3>
-                </div>
-            </div>
-
-            <div id="fiveDay" class="row pl-2">
-                <!-- 5 day forecast info-->
-            </div>
-
-        </div>
-        </div>
+    <div class="d-flex mt-2 weather-container">
     </div>
+    <div class="container mb-5 forecast-container">
+        <h3>5-Day Forecast:</h3>
+        <div class="row mb-2">
+            <div class="card col-12 col-md-2 m-auto mb-2 weatherforecast">
+                <div class="card-body forecast-card">
+                </div>
+            </div>
+            <div class="card col-12 col-md-2 m-auto mb-2 weatherforecast">
+                <div class="card-body forecast-card">
+                </div>
+            </div>
+            <div class="card col-12 col-md-2 m-auto mb-2 weatherforecast">
+                <div class="card-body forecast-card">
+                </div>
+            </div>
+            <div class="card col-12 col-md-2 m-auto mb-2 weatherforecast">
+                <div class="card-body forecast-card">
+                </div>
+            </div>
+            <div class="card col-12 col-md-2 m-auto mb-2 weatherforecast">
+                <div class="card-body forecast-card">
+                </div>
+            </div>
+        </div>
 
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+     integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>
 </html>
