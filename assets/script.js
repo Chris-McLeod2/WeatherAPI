@@ -7,7 +7,7 @@ var currentCityEl = document.getElementById("currentCity")
 var currentTempEl = document.getElementById("Temp")
 var currentWindEl = document.getElementById("Wind")
 var currentHumidityEl = document.getElementById("Humidity")
-var date = document.getElementById("date")
+var currentDateEl = document.getElementById("date")
 var weatherPicture = document.getElementById("weatherpicture")
 var temperature = document.getElementById("temperature")
 var wind = document.getElementById("wind")
@@ -23,32 +23,38 @@ var formSubmitHandler = function (event) {
         .trim() 
 
     if (cityName) {
-        getCoord(cityName)
+        Coords(cityName)
         cityEl.value = ""
         
-    }}
+}}
 
 
-    var Coords = function(city) {
+var Coords = function(city) {
         var apiURL =  "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=1b50cbb3b2c102d6f7def4cf1a1ea24d&units=imperial"
     
-        fetch(apiURL).then(function(data) {
+        fetch(apiURL).then(function(res) {
+            return res.json()
+        }).then(function (data){
+
+        
+            console.log(data)
             var lon = data.coord.lon
-            var lat = data.cooord.lat
+            var lat = data.coord.lat
             getWeather(lon, lat)
 
             var searchedCity = data.name
             currentCityEl.textContent = searchedCity
-
-
             if (!cities.includes(searchedCity)) {
                 cities.push(searchedCity)
                 saveToSearchHistory()
                 createButton(searchedCity)
                 
             }
+        })
+
+            
         }
-        )}
+
 
 var getWeather = function (lon, lat) {
     var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=1b50cbb3b2c102d6f7def4cf1a1ea24d&units=imperial"
@@ -71,22 +77,22 @@ var displayCurrentWeather = function (city) {
     var Date = convertDate(city.current.dt)
     var DateEl = document.createElement("span")
     DateEl.textContent = " (" + Date + ")"
-    CityEl.appendChild(currentDateEl)
+    cityEl.appendChild(currentDateEl)
 
     var icon = city.current.weather[0].icon
     var iconUrl = "https://openweathermap.org/img/wn/" + icon + ".png"
     var iconEl = document.createElement("img")
     iconEl.setAttribute("src", iconUrl)
-    CityEl.appendChild(iconEl)
+    cityEl.appendChild(iconEl)
 
     var Temp = "Temp: " + city.current.temp + " °F"
-    TempEl.textContent = Temp
+    currentTempEl.textContent = Temp
 
     var Wind = "Wind: " + city.current.wind_speed + " MPH"
-    WindEl.textContent = Wind
+    currentWindEl.textContent = Wind
 
     var Humidity = "Humidity: " + city.current.humidity + " %"
-    HumidityEl.textContent = Humidity
+    currentHumidityEl.textContent = Humidity
 
     display5DayForcast(city)
 }
@@ -106,7 +112,7 @@ var display5DayForcast = function (city) {
        
         var icon = city.daily[i].weather[0].icon
         var iconUrl = "https://openweathermap.org/img/wn/" + icon + ".png"
-        document.querySelector("#day" + i + ">.weather-icon").setAttribute("src", iconUrl)
+        document.querySelector("#day" + i + ".weatherpicture").setAttribute("src", iconUrl)
 
       
         document.querySelector("#day" + i + ">.temp").innerHTML = "Temp: " + city.daily[i].temperature.day + " °F"
