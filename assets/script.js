@@ -8,10 +8,10 @@ var currentTempEl = document.getElementById("Temp")
 var currentWindEl = document.getElementById("Wind")
 var currentHumidityEl = document.getElementById("Humidity")
 var currentDateEl = document.getElementById("date")
-var weatherPicture = document.getElementById("weatherpicture")
-var temperature = document.getElementById("temperature")
-var wind = document.getElementById("wind")
-var humidity = document.getElementById("humidity")
+var weatherPicture = document.querySelector(".weatherpicture")
+var temperature = document.querySelector(".temperature")
+var wind = document.querySelector(".wind")
+var humidity = document.querySelector(".humidity")
 
 var cities = []
 console.log("test")
@@ -99,7 +99,7 @@ var displayCurrentWeather = function (city) {
 var display5DayForcast = function (city) {
 
     document.querySelector("#title").innerHTML = "5 Day Forcast:"
-
+    
     for (var i = 1; i < 6; i++) {
 
  
@@ -112,12 +112,13 @@ var display5DayForcast = function (city) {
        
         var icon = city.daily[i].weather[0].icon
         var iconUrl = "https://openweathermap.org/img/wn/" + icon + ".png"
-        document.querySelector("#day" + i + ".weatherpicture").setAttribute("src", iconUrl)
+        document.querySelector("#day" + i + ".weatherpicture")
+        weatherPicture.src= iconUrl
+   
+        temperature.textContent =  "Temp: " + city.daily[i].temp.day + " °F"
+       
 
       
-        document.querySelector("#day" + i + ">.temp").innerHTML = "Temp: " + city.daily[i].temperature.day + " °F"
-
-       
         document.querySelector("#day" + i + ">.wind").innerHTML = "Wind: " + city.daily[i].wind_speed + " MPH"
 
         
@@ -133,7 +134,7 @@ var convertDate = function (unixTimeStamp) {
 
 var retriveWeather = function (event) {
 
-    getCoord(event.target.innerHTML)
+    Coords(event.target.innerHTML)
 }
 
 var saveToSearchHistory = function () {
@@ -159,7 +160,7 @@ var createButton = function (city) {
     var searchHistoryBtn = document.createElement("button")
     searchHistoryBtn.classList.add("btn-secondary", "btn", "col-12", "align-items-center", "mt-2")
     searchHistoryBtn.innerHTML = city
-    document.querySelector("#search-history").appendChild(searchHistoryBtn)
+    document.querySelector("#searchHistory").appendChild(searchHistoryBtn)
 }
 
 cityFormEl.addEventListener("submit", formSubmitHandler)

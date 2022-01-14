@@ -1,3 +1,8 @@
 h1 {
     font-size: 50px;
 }
+.forcast {
+    background-color: gray;
+    border-radius: 10px;
+    margin: 10px
+}
