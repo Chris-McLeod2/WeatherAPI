@@ -8,8 +8,8 @@ var currentTempEl = document.getElementById("Temp")
 var currentWindEl = document.getElementById("Wind")
 var currentHumidityEl = document.getElementById("Humidity")
 var currentDateEl = document.getElementById("date")
-var weatherPicture = document.querySelector(".weatherpicture")
-var temperature = document.querySelector(".temperature")
+var weatherPicture = document.querySelectorAll(".weatherpicture");
+var temperature = document.querySelectorAll(".temperature")
 var wind = document.querySelector(".wind")
 var humidity = document.querySelector(".humidity")
 
@@ -112,10 +112,12 @@ var display5DayForcast = function (city) {
        
         var icon = city.daily[i].weather[0].icon
         var iconUrl = "https://openweathermap.org/img/wn/" + icon + ".png"
-        document.querySelector("#day" + i + ".weatherpicture")
-        weatherPicture.src= iconUrl
+        
+
+
+        weatherPicture[i-1].src= iconUrl
    
-        temperature.textContent =  "Temp: " + city.daily[i].temp.day + " °F"
+        temperature[i-1].textContent =  "Temp: " + city.daily[i].temp.day + " °F"
        
 
       
